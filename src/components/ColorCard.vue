@@ -265,7 +265,6 @@ export default {
         mixedColors += "," + e.hex;
       });
       mixedColors +=')';
-      console.log(mixedColors);
       bus.$emit("gradientChanged", mixedColors);
       return mixedColors;
     }
