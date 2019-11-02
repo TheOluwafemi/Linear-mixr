@@ -41,7 +41,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: whitesmoke;
-  padding-top: 60px;
+  padding-top: 20px;
   min-height: 100%;
 }
 
