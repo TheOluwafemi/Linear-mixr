@@ -243,6 +243,30 @@ export default {
         } else {
           return `background-image: linear-gradient(to left, ${this.colors[0].hex}, ${this.colors[1].hex})`;
         }
+      } else if(this.topRightSelected) {
+        if(this.colors.length > 2 ) {
+          return `background-image: linear-gradient(to top right, ${this.colors[0].hex}, ${this.colors[1].hex}, ${this.colors[2].hex} )`;
+        } else {
+          return `background-image: linear-gradient(to top right, ${this.colors[0].hex}, ${this.colors[1].hex})`;
+        }
+      } else if(this.topLeftSelected) {
+        if(this.colors.length > 2 ) {
+          return `background-image: linear-gradient(to top left, ${this.colors[0].hex}, ${this.colors[1].hex}, ${this.colors[2].hex} )`;
+        } else {
+          return `background-image: linear-gradient(to top left, ${this.colors[0].hex}, ${this.colors[1].hex})`;
+        }
+      } else if(this.bottomLeftSelected) {
+        if(this.colors.length > 2 ) {
+          return `background-image: linear-gradient(to bottom left, ${this.colors[0].hex}, ${this.colors[1].hex}, ${this.colors[2].hex} )`;
+        } else {
+          return `background-image: linear-gradient(to bottom left, ${this.colors[0].hex}, ${this.colors[1].hex})`;
+        }
+      } else if(this.bottomRightSelected) {
+        if(this.colors.length > 2 ) {
+          return `background-image: linear-gradient(to bottom right, ${this.colors[0].hex}, ${this.colors[1].hex}, ${this.colors[2].hex} )`;
+        } else {
+          return `background-image: linear-gradient(to bottom right, ${this.colors[0].hex}, ${this.colors[1].hex})`;
+        }
       } else {
         return `background-image: linear-gradient(to top, ${this.colors[0].hex}, ${this.colors[1].hex})`;
       }
