@@ -80,13 +80,13 @@ export default {
       colors: [
         { id: 0, hex: '#2b0a31' },
         { id: 1, hex: '#1c165c' }
-      ],
+      ],   
 
       id: 2,
       copySucceeded: false,
       defaultDirection: 'bottom',
 
-      angle: "45deg",
+      angle: "to top",
       topSelected: true,
       topRightSelected: false,
       topLeftSelected: false,
@@ -115,6 +115,9 @@ export default {
     },
 
     storeColors() {
+      if (this.colors.length > 2) {
+        localStorage.setItem('color3', this.colors[2].hex);
+      }
       localStorage.setItem('color1', this.colors[0].hex);
       localStorage.setItem('color2', this.colors[1].hex);
     },
@@ -128,8 +131,10 @@ export default {
 
     addNewColor() {
       if (this.colors.length <= 2) {
-        let colorsLength = this.colors.length -1;
+        let colorsLength = this.colors.length -1; 
         this.colors.push({ id: colorsLength + 1, hex: this.randomColor()});
+        this.threeWayGradient = true;
+        this.storeGradientType();
         this.gradient;
       }
     },
@@ -137,8 +142,14 @@ export default {
     removeLastColor() {
       if (this.colors.length > 2) {
         this.colors.pop();
+        this.threeWayGradient = false;
+        this.storeGradientType();
         this.gradient;
       }
+    },
+
+    storeGradientType() {
+      localStorage.setItem('threeWay', this.threeWayGradient);
     },
 
     bottomAngleSelected() {
@@ -208,10 +219,17 @@ export default {
   mounted() {
     let storedColor1 = localStorage.getItem('color1');
     let storedColor2 = localStorage.getItem('color2');
+    let storedColor3 = localStorage.getItem("color3");
+    let storedThreeWayGradient = localStorage.getItem('threeWay');
+
     if (storedColor1 && storedColor2) {
       this.colors[0].hex = storedColor1;
       this.colors[1].hex = storedColor2;
-    }
+
+      if (storedThreeWayGradient === 'true') {
+        this.colors.push({ id: 2, hex: storedColor3});
+      }   
+    } 
     this.gradient;
   },
   beforeDestroy() {
